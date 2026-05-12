@@ -1,0 +1,24 @@
+{
+  "model_type": "XGBoost",
+  "accuracy": "97%",
+  "training_date": "2024-11-27",
+  "features": [
+    "plant_id",
+    "month_sin",
+    "month_cos",
+    "quarter",
+    "lag_1",
+    "lag_2",
+    "lag_3",
+    "lag_6",
+    "lag_12",
+    "rolling_mean_3",
+    "rolling_std_3",
+    "trend"
+  ],
+  "plants": [
+    1,
+    2
+  ],
+  "description": "Monthly GHG emission prediction model"
+}

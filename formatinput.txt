@@ -1,0 +1,38 @@
+1.1 Boiler & Genset
+    Maja sm Bogor beda??
+
+1.1 Tungku 
+    Period | Jumlah Hari Kerja/bulan | Factory | Debu per Hari
+    note:
+    -kalau boiler besar, tulis aja Boiler Besar
+    -Kalau majalengka, factorynya tulis majalengka saja
+
+1.2 Forklift
+    Period | Jumlah Konsumsi BBM (Liter)
+
+1.2 Vehicle Transport
+    Period | Jenis BBM | Jumlah Konsumsi BBM (Liter)
+    cont: 
+    JANUARI | PERTAMINA - Pertalite | 45.84
+
+1.3 WWTP
+    Period | Population | Protein Comsumption per Capita This Year
+    (manual isinya?)
+
+1.4 Refrigerant
+    Period | Lokasi | Qty | Type Freon | Jenis | Kapasitas (g)
+
+2.1 Listrik
+    Period |         Pemakaian Listrik            |
+           | LWBP (KWh)  | WBP (KWh) | Total (KWh)|
+
+3.1 Upstream Transport (Direct & Indirect)
+    Period | Nama Pemasok | Jenis Kendaraan | Vehicle Type | Size | Fuel | Distance | Jumlah Armada
+
+3.2 Downstream Transport
+    Jenis kendaraan?? (20ft dan 40ft sama??)
+
+3.5 Business Travel
+    Period | Route | Jenis Kendaraan | Vehicle Type | Size | Fuel | Distance
+
+
