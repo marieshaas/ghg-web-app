@@ -36,6 +36,28 @@ const EmissionAnalysis = () => {
   const [loading, setLoading] = useState(true);
   const [isDemoMode, setIsDemoMode] = useState(false);
 
+  const analyzeCategory = useCallback(async (categoryCode) => {
+    try {
+      setSelectedCategory(categoryCode);
+
+      // Fetch consumption details
+      const consumptionRes = await axios.get(
+        `${API_BASE_URL}/api/analysis/consumption-analysis?category=${categoryCode}&year=${year}`
+      );
+      setConsumptionData(consumptionRes.data.data);
+
+      // Fetch recommendations
+      const recommendRes = await axios.get(
+        `${API_BASE_URL}/api/analysis/recommendations/${categoryCode}?emission_level=high`
+      );
+      setRecommendations(recommendRes.data.recommendations);
+    } catch (error) {
+      console.warn('Backend tidak tersedia, menggunakan demo data:', error.message);
+      setConsumptionData(getDummyConsumption(categoryCode));
+      setRecommendations(getDummyRecommendations(categoryCode));
+    }
+  }, [year]);
+
   const fetchCategoryRanking = useCallback(async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/api/analysis/category-ranking?year=${year}`);
@@ -58,33 +80,11 @@ const EmissionAnalysis = () => {
       setRecommendations(getDummyRecommendations(firstCode));
       setLoading(false);
     }
-  }, [year, searchParams]);
+  }, [year, searchParams, analyzeCategory]);
 
   useEffect(() => {
     fetchCategoryRanking();
   }, [fetchCategoryRanking]);
-
-  const analyzeCategory = async (categoryCode) => {
-    try {
-      setSelectedCategory(categoryCode);
-      
-      // Fetch consumption details
-      const consumptionRes = await axios.get(
-        `${API_BASE_URL}/api/analysis/consumption-analysis?category=${categoryCode}&year=${year}`
-      );
-      setConsumptionData(consumptionRes.data.data);
-      
-      // Fetch recommendations
-      const recommendRes = await axios.get(
-        `${API_BASE_URL}/api/analysis/recommendations/${categoryCode}?emission_level=high`
-      );
-      setRecommendations(recommendRes.data.recommendations);
-    } catch (error) {
-      console.warn('Backend tidak tersedia, menggunakan demo data:', error.message);
-      setConsumptionData(getDummyConsumption(categoryCode));
-      setRecommendations(getDummyRecommendations(categoryCode));
-    }
-  };
 
   // Chart.js data preparation
   const pieChartData = {
