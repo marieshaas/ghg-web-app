@@ -53,7 +53,7 @@ const EmissionCalculator = () => {
     handleYearOnlyToggle,
   } = useEmissionCalculator();
 
-  const [isSaving, setIsSaving] = useState(false);
+  const [isSaving] = useState(false);
 
   const handleExportExcel = () => {
     const result = exportToExcel(

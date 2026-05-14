@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { DUMMY_CATEGORY_RANKING, getDummyConsumption, getDummyRecommendations } from '../../utils/dummyData';
 import { API_BASE_URL } from '../../config/emissionconfig';
@@ -36,11 +36,7 @@ const EmissionAnalysis = () => {
   const [loading, setLoading] = useState(true);
   const [isDemoMode, setIsDemoMode] = useState(false);
 
-  useEffect(() => {
-    fetchCategoryRanking();
-  }, []);
-
-  const fetchCategoryRanking = async () => {
+  const fetchCategoryRanking = useCallback(async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/api/analysis/category-ranking?year=${year}`);
       setCategoryData(response.data.data);
@@ -62,7 +58,11 @@ const EmissionAnalysis = () => {
       setRecommendations(getDummyRecommendations(firstCode));
       setLoading(false);
     }
-  };
+  }, [year, searchParams]);
+
+  useEffect(() => {
+    fetchCategoryRanking();
+  }, [fetchCategoryRanking]);
 
   const analyzeCategory = async (categoryCode) => {
     try {
