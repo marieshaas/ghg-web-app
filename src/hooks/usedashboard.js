@@ -49,7 +49,8 @@ export default function useDashboard() {
           .filter(d => d.year === dataPreviousYear)
           .reduce((sum, d) => sum + parseFloat(d.total_emission || 0), 0);
 
-        const growth = totalPrevious > 0 ? ((totalCurrent - totalPrevious) / totalPrevious) * 100 : 0;
+        const rawGrowth = totalPrevious > 0 ? ((totalCurrent - totalPrevious) / totalPrevious) * 100 : 0;
+        const growth = Math.abs(rawGrowth) > 500 ? 0 : rawGrowth;
 
         // Process categories
         const categoryGroups = {};
@@ -69,7 +70,8 @@ export default function useDashboard() {
         });
 
         Object.values(categoryGroups).forEach(cat => {
-          cat.yoyChange = cat.previous > 0 ? ((cat.current - cat.previous) / cat.previous) * 100 : 0;
+          const rawCatGrowth = cat.previous > 0 ? ((cat.current - cat.previous) / cat.previous) * 100 : 0;
+          cat.yoyChange = Math.abs(rawCatGrowth) > 500 ? 0 : rawCatGrowth;
         });
 
         const highestCat = Object.values(categoryGroups).reduce((max, cat) => 
@@ -117,9 +119,10 @@ export default function useDashboard() {
             }
           });
 
-          category12Data.total.yoyChange = category12Data.total.previous > 0 
-            ? ((category12Data.total.current - category12Data.total.previous) / category12Data.total.previous) * 100 
+          const rawCat12Growth = category12Data.total.previous > 0
+            ? ((category12Data.total.current - category12Data.total.previous) / category12Data.total.previous) * 100
             : 0;
+          category12Data.total.yoyChange = Math.abs(rawCat12Growth) > 500 ? 0 : rawCat12Growth;
         }
 
         const latestMonth = Math.max(...plantSummary
