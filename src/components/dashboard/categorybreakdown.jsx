@@ -82,7 +82,7 @@ const CategoryCard = ({ category, color, currentYear, previousYear }) => {
         {category.previous > 0 && (
           <div className={`px-2 py-1 rounded-lg ${category.yoyChange >= 0 ? 'bg-red-100' : 'bg-green-100'}`}>
             <span className={`text-xs font-bold ${category.yoyChange >= 0 ? 'text-red-700' : 'text-green-700'}`}>
-              {category.yoyChange >= 0 ? '▲' : '▼'} {Math.abs(category.yoyChange).toFixed(1)}%
+              {category.yoyChange >= 0 ? '▲' : '▼'} {Math.round(Math.abs(category.yoyChange))}%
             </span>
           </div>
         )}

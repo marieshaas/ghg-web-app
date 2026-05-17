@@ -169,8 +169,8 @@ const SupplierClustering = () => {
               className="px-5 py-3 border border-gray-300 rounded-lg text-lg focus:ring-4 focus:ring-blue-300"
             >
               <option value="">All Plants</option>
-              <option value="1">Plant Bogor</option>
-              <option value="2">Plant Majalengka</option>
+              <option value="1">Plant A</option>
+              <option value="2">Plant B</option>
             </select>
           </div>
           {loading && (

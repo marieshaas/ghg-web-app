@@ -46,7 +46,7 @@ const DashboardCards = ({ data, currentYear, previousYear, currentMonth, months 
             <p className="text-sm text-gray-500 mt-1">
               vs {previousYear}: {safeData.grandTotal.previous.toLocaleString('id-ID', { maximumFractionDigits: 2 })}
               <span className={`ml-2 font-semibold ${safeData.grandTotal.yoyChange >= 0 ? 'text-red-600' : 'text-green-600'}`}>
-                ({safeData.grandTotal.yoyChange >= 0 ? '+' : ''}{safeData.grandTotal.yoyChange.toFixed(1)}%)
+                ({safeData.grandTotal.yoyChange >= 0 ? '+' : ''}{Math.round(safeData.grandTotal.yoyChange)}%)
               </span>
             </p>
           </div>
@@ -79,7 +79,7 @@ const DashboardCards = ({ data, currentYear, previousYear, currentMonth, months 
         <MetricCard
           title="Year over Year Change"
           subtitle={`${currentYear} vs ${previousYear}`}
-          value={`${safeData.grandTotal.yoyChange >= 0 ? '+' : ''}${safeData.grandTotal.yoyChange.toFixed(2)}%`}
+          value={`${safeData.grandTotal.yoyChange >= 0 ? '+' : ''}${Math.round(safeData.grandTotal.yoyChange)}%`}
           label={safeData.grandTotal.yoyChange >= 0 ? 'increase' : 'decrease'}
           colorClass={safeData.grandTotal.yoyChange >= 0 ? 'amber' : 'green'}
           icon="trend"
@@ -182,7 +182,7 @@ const DashboardCards = ({ data, currentYear, previousYear, currentMonth, months 
               <span className="text-sm text-gray-600">
                 {(data.category12.total.previous || 0).toLocaleString('id-ID', { maximumFractionDigits: 4 })} tCO₂e
                 <span className={`ml-2 font-semibold ${data.category12.total.yoyChange >= 0 ? 'text-red-600' : 'text-green-600'}`}>
-                  ({data.category12.total.yoyChange >= 0 ? '+' : ''}{(data.category12.total.yoyChange || 0).toFixed(1)}%)
+                  ({data.category12.total.yoyChange >= 0 ? '+' : ''}{Math.round(data.category12.total.yoyChange || 0)}%)
                 </span>
               </span>
             </div>
