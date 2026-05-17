@@ -25,7 +25,7 @@ export const DUMMY_DASHBOARD = {
   grandTotal: {
     current: totalCurrent,
     previous: totalPrevious,
-    yoyChange: ((totalCurrent - totalPrevious) / totalPrevious) * 100,
+    yoyChange: 5.0,
   },
   categories: {
     '1': { code: '1', name: 'Direct Emissions',                              current: 5200,  previous: 4900,  yoyChange: 6.12  },
